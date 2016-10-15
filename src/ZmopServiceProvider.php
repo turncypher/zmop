@@ -10,18 +10,11 @@ use Illuminate\Support\ServiceProvider;
 
 class  ZmopServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/zmop.php' => config_path('zmop.php'),
-        ], 'config');
+            __DIR__ . '/config/zmop.php' => config('zmop.php'),
+        ]);
     }
     /**
      * Register the service provider.
