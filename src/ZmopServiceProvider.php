@@ -8,14 +8,17 @@
  */
 use Illuminate\Support\ServiceProvider;
 
-class  ZmopServiceProvider extends ServiceProvider
+class ZmopServiceProvider extends ServiceProvider
 {
+    protected $defer = false;
+
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/zmop.php' => config('zmop.php'),
-        ]);
+            __DIR__ . '/../config/zmop.php' => base_path('config/zmop.php'),
+        ], "config");
     }
+
     /**
      * Register the service provider.
      *
@@ -23,6 +26,25 @@ class  ZmopServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerZmop();
+    }
 
+    private function registerZmop()
+    {
+        $this->app->bind('zmop', function ($app) {
+            $gatewayUrl = config('zmop.gatewayUrl');
+            $appId = config('zmop.appId');
+            $charset = config('zmop.charset');
+            $privateKeyFilePath = config('zmop.privateKeyFile');
+            $zhiMaPublicKeyFilePath = config('zmop.zmPublicKeyFile');
+
+            return new ZmopClient(
+                $gatewayUrl,
+                $appId,
+                $charset,
+                $privateKeyFilePath,
+                $zhiMaPublicKeyFilePath
+            );
+        });
     }
 }
