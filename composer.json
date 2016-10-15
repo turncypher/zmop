@@ -1,0 +1,17 @@
+{
+  "name": "turncypher/zmop",
+  "description": "a zhi ma credit package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Emmanuel",
+      "email": "turncypher@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Turncypher\\Zmop\\": "src/"
+    }
+  }
+}
