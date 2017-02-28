@@ -1,2 +1,2 @@
 # zmop
-芝麻信用larave简单封装
+芝麻信用laravel简单封装
